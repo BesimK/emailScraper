@@ -5,8 +5,8 @@ from utils.helpers import save_to_excel
 
 
 def main():
-    city = input("Enter the city: ")
-    business_type = input("Enter the business type: ")
+    city = "İstanbul"
+    business_type = "Avukat"
     neighborhoods = get_neighborhoods(city)
 
     if not neighborhoods:
@@ -15,11 +15,8 @@ def main():
 
     business_details = []
     for neighborhood in neighborhoods:
-        try:
-            details = scrape_google_maps(neighborhood, business_type)
-            business_details.extend(details)
-        except:
-            continue
+        details = scrape_google_maps(neighborhood, business_type)
+        business_details.extend(details)
 
     result_list = helpers.name_generator(city, business_type)
     save_to_excel(business_details, result_list)
